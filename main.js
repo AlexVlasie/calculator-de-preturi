@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const refButton = document.getElementById('ref');
     
     refButton.addEventListener('click', function () {
-        // Resetarea valorilor la starea inițială
+        // Resetarea valorilor la starea initiala
         document.getElementById('pfurnizor').value = '';
         document.getElementById('btncheck1').checked = false;
         document.getElementById('pvanzare').value = '';
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const pfurnizorInput = document.getElementById('pfurnizor');
     const tvaCheckbox = document.getElementById('btncheck1');
     const pvanzareInput = document.getElementById('pvanzare');
-
 
     pvanzareInput.setAttribute('readonly', 'readonly');
 
@@ -23,12 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePretVanzare();
     });
 
+    function convertVirgulaInPunct(text) {
+        // Conversie virgula in punct
+        return text.replace(/,/g, '.');
+    }
+
     function calculatePretVanzare() {
-        let pfurnizorValue = parseFloat(pfurnizorInput.value);
+        let pfurnizorValue = convertVirgulaInPunct(pfurnizorInput.value); // Convertirea virgulei in punct
+        pfurnizorValue = parseFloat(pfurnizorValue); // Convertirea la numar float
+
         const tvaChecked = tvaCheckbox.checked;
 
         if (isNaN(pfurnizorValue)) {
-            pvanzareInput.value = "0.00";
+            pvanzareInput.value = "- ";
             pvanzareInput.style.opacity = "0.7";
             return;
         }
@@ -69,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     calculatePretVanzare();
-
 });
 
 document.getElementById("Copiaza").addEventListener("click", function() {
