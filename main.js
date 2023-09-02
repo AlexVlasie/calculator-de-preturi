@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let pfurnizorValue = parseFloat(pfurnizorInput.value);
         const tvaChecked = tvaCheckbox.checked;
 
+        if (isNaN(pfurnizorValue)) {
+            pvanzareInput.value = "0.00";
+            pvanzareInput.style.opacity = "0.7";
+            return;
+        }
+
         if (tvaChecked) {
             pfurnizorValue /= 1.19;
         }
