@@ -1,0 +1,23 @@
+
+.info-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.info-popup {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000; 
+    font-size: 14px;
+    max-width: 200px; 
+    text-align: left;
+}
+
+.info-icon:hover + .info-popup {
+    display: block;
+}
