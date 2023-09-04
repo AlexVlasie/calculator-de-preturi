@@ -17,7 +17,7 @@
         }
 
         #calc {
-            width: 250px;
+            width: 270px;
             border: 1px solid black;
             border-radius: 10px;
             padding: 20px;
@@ -43,9 +43,7 @@
             padding-left: 0;
         }
 
-        .tva-box {
-            display: flex;    
-        }
+        
 
         .calcrefresh {
             display: flex;
@@ -90,9 +88,14 @@
         }
 
         .pfurnizor-error {
-    border: 2px solid pink; /* Setează culoarea conturului la roz */
-    opacity: 0.25; /* Setează opacitatea conturului la 25% */
-}
+            border: 2px solid pink; 
+            opacity: 0.25; 
+        }       
+
+        .tva-box {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
 
         
     </style>
@@ -126,20 +129,31 @@
                 <input type="text" id="pfurnizor" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
 
-            <div class="tva-box" title="Se selecteaza doar daca pretul oferit de furnizor include TVA.">
-                <svg id="infos" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" >
-                    <path d="M 12 2 C 10.343 2 9 3.343 9 5 C 9 6.657 10.343 8 12 8 C 13.657 8 15 6.657 15 5 C 15 3.343 13.657 2 12 2 z M 9 10 A 1.0001 1.0001 0 1 0 9 12 L 10 12 L 10 20 L 9 20 A 1.0001 1.0001 0 1 0 9 22 L 15 22 A 1.0001 1.0001 0 1 0 15 20 L 14 20 L 14 11 C 14 10.448 13.552 10 13 10 L 11 10 L 9 10 z"></path>
-                </svg>
-                <p class="tva-txt">TVA</p>
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                    <label id="tva" class="btn btn-outline-primary" for="btncheck1"></label>
+            <div class="tva-box" title="Se selecteaza daca pretul oferit de furnizor include TVA." style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+
+                <p class="tva-txt" style="font-size: 16px;">Pretul de achizite contine TVA</p>
+              
+                <div class="check-options">
+                  <div class="form-check" style="display: inline-block;" id="option-1">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" id="da" for="flexRadioDefault1">
+                      Da
+                    </label>
+                  </div>
+                  <div class="form-check" style="display: inline-block;" id="option-2">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Nu
+                    </label>
+                  </div>
                 </div>
-            </div>    
+              </div>
+
+
 
             <div title="Pret vanzare final fara TVA (include adaos)" class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Pret vanzare</span>
-                <input type="text" id="pvanzare" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <input type="text" id="pvanzare" class="form-control" aria-label="da" aria-describedby="inputGroup-sizing-default">
             </div>
             <button type="button" id="Copiaza" class="btn btn-success">Copiaza</button>
         </div>
