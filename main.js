@@ -85,8 +85,16 @@ document.addEventListener('DOMContentLoaded', function () {
     refButton.click();      // Reset pagina
 });
 
-document.getElementById("Copiaza").addEventListener("click", function() {
-    var textToCopy = document.getElementById("pvanzare");
+document.getElementById('Copiaza').addEventListener('click', function () {
+    var textToCopy = document.getElementById('pvanzare');
     textToCopy.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
+
+    // Hold 1.5 sec before reset. :D
+    setTimeout(function () {
+        document.getElementById('pfurnizor').value = '';
+        document.getElementById('flexRadioDefault1').checked = false;
+        document.getElementById('flexRadioDefault2').checked = false;
+        document.getElementById('pvanzare').value = '0,00';
+    }, 1500);
 });
