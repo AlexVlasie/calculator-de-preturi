@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('pfurnizor').value = '';
         document.getElementById('flexRadioDefault1').checked = false;
         document.getElementById('flexRadioDefault2').checked = false;
-        document.getElementById('pvanzare').value = '-';
+        document.getElementById('pvanzare').value = '0,00';
     });
 
     const pfurnizorInput = document.getElementById('pfurnizor');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const option2Checked = option2Radio.checked;
 
         if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
-            pvanzareInput.value = "- ";
+            pvanzareInput.value = "0,00 ";
             pvanzareInput.style.opacity = "0.7";
             return;
         }
