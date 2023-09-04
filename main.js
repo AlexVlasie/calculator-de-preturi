@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePretVanzare();
     });
 
-    function convertVirgulaInPunct(text) {
-        // Conversie virgula in punct
-        return text.replace(/,/g, '.');
+    function convertPunctInVirgula(text) {
+        // Conversie punct în virgulă
+        return text.replace(/\./g, ',');
     }
 
     function calculatePretVanzare() {
-        let pfurnizorValue = convertVirgulaInPunct(pfurnizorInput.value); // Convertirea virgulei in punct
-        pfurnizorValue = parseFloat(pfurnizorValue); // Convertirea la numar float
+        let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value); // Convertirea punctului în virgulă
+        pfurnizorValue = parseFloat(pfurnizorValue); // Convertirea la număr float
 
         const tvaChecked = tvaCheckbox.checked;
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             adaosComercial = 0.25; // 25%
         } else if (pfurnizorValue > 0){
             adaosComercial = 0.30; // 30%
-            pvanzareInput.value = '26.05'; 
+            pvanzareInput.value = '26,05'; 
             return; 
         }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         pretVanzare = pretVanzare / 1.19;
 
-        pretVanzare = pretVanzare.toFixed(2);
+        pretVanzare = pretVanzare.toFixed(2).replace(".", ",");
 
         pvanzareInput.value = pretVanzare;
     }
