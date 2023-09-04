@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('pfurnizor').value = '';
         document.getElementById('flexRadioDefault1').checked = false;
         document.getElementById('flexRadioDefault2').checked = false;
-        document.getElementById('pvanzare').value = '0,00 ';
+        document.getElementById('pvanzare').value = '0,00';
     });
 
     const pfurnizorInput = document.getElementById('pfurnizor');
