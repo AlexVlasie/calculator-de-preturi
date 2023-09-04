@@ -21,3 +21,8 @@
 .info-icon:hover + .info-popup {
     display: block;
 }
+
+#da {
+    margin-right: 45px;
+}
+
