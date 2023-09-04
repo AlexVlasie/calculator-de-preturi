@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const refButton = document.getElementById('ref');
     
     refButton.addEventListener('click', function () {
-        // Resetarea valorilor la starea initiala
         document.getElementById('pfurnizor').value = '';
-        document.getElementById('btncheck1').checked = false;
-        document.getElementById('pvanzare').value = '';
+        document.getElementById('flexRadioDefault1').checked = false;
+        document.getElementById('flexRadioDefault2').checked = false;
+        document.getElementById('pvanzare').value = '-';
     });
 
     const pfurnizorInput = document.getElementById('pfurnizor');
-    const tvaCheckbox = document.getElementById('btncheck1');
     const pvanzareInput = document.getElementById('pvanzare');
 
     pvanzareInput.setAttribute('readonly', 'readonly');
@@ -18,7 +17,14 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePretVanzare();
     });
 
-    tvaCheckbox.addEventListener('change', function () {
+    const option1Radio = document.getElementById('flexRadioDefault1');
+    const option2Radio = document.getElementById('flexRadioDefault2');
+
+    option1Radio.addEventListener('change', function () {
+        calculatePretVanzare();
+    });
+
+    option2Radio.addEventListener('change', function () {
         calculatePretVanzare();
     });
 
@@ -28,18 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function calculatePretVanzare() {
-        let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value); // Convertirea punctului în virgulă
-        pfurnizorValue = parseFloat(pfurnizorValue); // Convertirea la număr float
+        let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value); // Conversie pct in virgula.
+        pfurnizorValue = parseFloat(pfurnizorValue);
 
-        const tvaChecked = tvaCheckbox.checked;
+        const option1Checked = option1Radio.checked;
+        const option2Checked = option2Radio.checked;
 
-        if (isNaN(pfurnizorValue)) {
+        if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
             pvanzareInput.value = "- ";
             pvanzareInput.style.opacity = "0.7";
             return;
         }
 
-        if (tvaChecked) {
+        if (option1Checked) {
             pfurnizorValue /= 1.19;
         }
 
@@ -74,7 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
         pvanzareInput.value = pretVanzare;
     }
 
-    calculatePretVanzare();
+    
+    refButton.click();      // Reset pagina
 });
 
 document.getElementById("Copiaza").addEventListener("click", function() {
