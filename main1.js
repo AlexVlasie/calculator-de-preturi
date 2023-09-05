@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const pfurnizorInput = document.getElementById('pfurnizor');
     const pvanzareInput = document.getElementById('pvanzare');
-    const ptvaInput = document.getElementById('ptva'); // Adăugăm elementul ptva
+    const ptvaInput = document.getElementById('ptva'); 
 
     pvanzareInput.setAttribute('readonly', 'readonly');
-    ptvaInput.setAttribute('readonly', 'readonly'); // Facem și ptva input readonly
+    ptvaInput.setAttribute('readonly', 'readonly'); 
 
     pfurnizorInput.addEventListener('input', function () {
         calculatePretVanzare();
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
         if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
             pvanzareInput.value = "0,00";
-            ptvaInput.value = "0,00"; // Setăm ptva la 0 în acest caz
+            ptvaInput.value = "0,00"; 
             pvanzareInput.style.opacity = "0.7";
-            ptvaInput.style.opacity = "0.7"; // Facem și ptva input transparent
+            ptvaInput.style.opacity = "0.7"; 
             return;
         }
     
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (option1Checked) {
             pfurnizorValue /= 1.19;
         } else if (option2Checked) {
-            adaosComercial = 0; // Reducem adaosul comercial la 0% pentru opțiunea 2
+            adaosComercial = 0; 
         }
     
         if (pfurnizorValue >= 2000) {
