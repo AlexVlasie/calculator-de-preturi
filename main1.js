@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
 
-    refButton.click(); 
+    refButton.click(); // Reset pagina
 });
 
 document.getElementById('Copiaza').addEventListener('click', function () {
@@ -132,7 +132,7 @@ document.addEventListener('keydown', function (event) {
     if ((event.ctrlKey || event.metaKey) && event.key === 'c') {
         var selection = window.getSelection().toString();
         if (selection === document.getElementById('pvanzare').value || selection === document.getElementById('ptva').value) {
-            // Resetăm valorile doar dacă textul selectat este din pvanzare sau ptva
+            
             setTimeout(function () {
                 resetValues();
             }, 1500); 
@@ -140,7 +140,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-
+// Butonul Copiaza
 document.getElementById('Copiaza').addEventListener('click', function () {
     var textToCopy = document.getElementById('pvanzare');
     textToCopy.select();
@@ -151,7 +151,7 @@ document.getElementById('Copiaza').addEventListener('click', function () {
     }, 1500);
 });
 
-
+// Butonul CopiazaTVA
 document.getElementById('CopiazaTVA').addEventListener('click', function () {
     var textToCopy = document.getElementById('ptva');
     textToCopy.select();
