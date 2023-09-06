@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (pfurnizorValue > 0) {
             adaosComercial = 0.30; // 30%
             pvanzareInput.value = '26,05';
-            ptvaInput.value = '5,00'; 
+            ptvaInput.value = '30.99'; 
             return;
         }
     
