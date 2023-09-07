@@ -36,57 +36,55 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function calculatePretVanzare() {
-        let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value);
-        pfurnizorValue = parseFloat(pfurnizorValue);
-    
-        const option1Checked = option1Radio.checked;
-        const option2Checked = option2Radio.checked;
-    
-        if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
-            pvanzareInput.value = "0,00";
-            ptvaInput.value = "0,00"; 
-            pvanzareInput.style.opacity = "0.7";
-            ptvaInput.style.opacity = "0.7"; 
-            return;
-        }
-    
-        let adaosComercial = 0;
-    
-        if (option1Checked) {
-            pfurnizorValue /= 1.19;
-        } else if (option2Checked) {
-            adaosComercial = 0; 
-        }
-    
-        if (pfurnizorValue >= 2000) {
-            adaosComercial = 0.05; // 5%
-        } else if (pfurnizorValue >= 1500) {
-            adaosComercial = 0.10; // 10%
-        } else if (pfurnizorValue >= 1000) {
-            adaosComercial = 0.15; // 15%
-        } else if (pfurnizorValue >= 500) {
-            adaosComercial = 0.20; // 20%
-        } else if (pfurnizorValue > 20) {
-            adaosComercial = 0.25; // 25%
-        } else if (pfurnizorValue > 0) {
-            adaosComercial = 0.30; // 30%
-            pvanzareInput.value = '26,05';
-            ptvaInput.value = '30.99'; 
-            return;
-        }
-    
-        let pretVanzare = pfurnizorValue * (1 + adaosComercial);
-        let ptvaValue = pretVanzare * 1.19; 
-    
-        pretVanzare = pretVanzare * 1.19;
-        pretVanzare = Math.ceil(pretVanzare);
-        pretVanzare = pretVanzare / 1.19;
-        ptvaValue = ptvaValue.toFixed(2).replace(".", ",");
-    
-        pretVanzare = pretVanzare.toFixed(2).replace(".", ",");
-        pvanzareInput.value = pretVanzare;
-        ptvaInput.value = ptvaValue; 
+    let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value);
+    pfurnizorValue = parseFloat(pfurnizorValue);
+
+    const option1Checked = option1Radio.checked;
+    const option2Checked = option2Radio.checked;
+
+    if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
+        pvanzareInput.value = "0,00";
+        ptvaInput.value = "0,00";
+        pvanzareInput.style.opacity = "0.7";
+        ptvaInput.style.opacity = "0.7";
+        return;
     }
+
+    let adaosComercial = 0;
+
+    if (option1Checked) {
+        pfurnizorValue /= 1.19;
+        adaosComercial = 0; // Aici am modificat pentru a clarifica
+    } else if (option2Checked) {
+        adaosComercial = 0;
+    }
+
+    if (pfurnizorValue >= 2000) {
+        adaosComercial = 0.05; // 5%
+    } else if (pfurnizorValue >= 1500) {
+        adaosComercial = 0.10; // 10%
+    } else if (pfurnizorValue >= 1000) {
+        adaosComercial = 0.15; // 15%
+    } else if (pfurnizorValue >= 500) {
+        adaosComercial = 0.20; // 20%
+    } else if (pfurnizorValue > 20) {
+        adaosComercial = 0.25; // 25%
+    } else if (pfurnizorValue > 0) {
+        adaosComercial = 0.30; // 30%
+        pvanzareInput.value = '26,05';
+        ptvaInput.value = '4,94'; // 30% din prețul de vânzare
+        return;
+    }
+
+    let pretVanzare = pfurnizorValue * (1 + adaosComercial);
+    let ptvaValue = pretVanzare * 0.19; // 19% din prețul de vânzare
+
+    pretVanzare = (pretVanzare / 1.19).toFixed(2); // Rotunjire corectă
+    ptvaValue = ptvaValue.toFixed(2).replace(".", ",");
+
+    pvanzareInput.value = pretVanzare;
+    ptvaInput.value = ptvaValue;
+}
     
 
     refButton.click(); // Reset pagina
