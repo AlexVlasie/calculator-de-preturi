@@ -77,11 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let pretVanzare = pfurnizorValue * (1 + adaosComercial);
-    let ptvaValue = pretVanzare * 0.19; // 19% din prețul de vânzare
 
     pretVanzare = (pretVanzare / 1.19).toFixed(2); // Rotunjire corectă
+    let ptvaValue = pretVanzare * 1.19; // 
     ptvaValue = ptvaValue.toFixed(2).replace(".", ",");
 
+        
     pvanzareInput.value = pretVanzare;
     ptvaInput.value = ptvaValue;
 }
