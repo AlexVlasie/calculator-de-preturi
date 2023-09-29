@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (pfurnizorValue > 0) {
         adaosComercial = 0.30; // 30%
         pvanzareInput.value = '26,05';
-        ptvaInput.value = '4,94'; // 30% din prețul de vânzare
+        ptvaInput.value = '30,99'; // 30% din prețul de vânzare
         return;
     }
 
@@ -160,6 +160,5 @@ document.getElementById('CopiazaTVA').addEventListener('click', function () {
         resetValues();
     }, 1500);
 });
-
 
 
