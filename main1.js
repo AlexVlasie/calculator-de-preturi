@@ -1,27 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
     const refButton = document.getElementById('ref');
-
-    refButton.addEventListener('click', function () {
-        document.getElementById('pfurnizor').value = '';
-        document.getElementById('flexRadioDefault1').checked = false;
-        document.getElementById('flexRadioDefault2').checked = false;
-        document.getElementById('pvanzare').value = '0,00';
-        document.getElementById('ptva').value = '0,00';
-    });
+    refButton.addEventListener('click', resetValues);
 
     const pfurnizorInput = document.getElementById('pfurnizor');
     const pvanzareInput = document.getElementById('pvanzare');
-    const ptvaInput = document.getElementById('ptva'); 
+    const ptvaInput = document.getElementById('ptva');
+    const monedacurentaSelect = document.getElementById('monedacurenta');
+    const option1Radio = document.getElementById('flexRadioDefault1');
+    const option2Radio = document.getElementById('flexRadioDefault2');
+    const cursVal = document.getElementById('cursvalutar2');
+
+    // Adaugăm o variabilă pentru a stoca cursurile valutare
+    let cursEuro = 0;
+    let cursUSD = 0;
+
+    // Funcția pentru actualizarea cursului valutar
+    function updateExchangeRates() {
+        // Înlocuiți URL-ul cu locația corectă a fișierului curs_bnr.php pe serverul dvs.
+        const bnrUrl = '/Users/vlasie/Library/CloudStorage/OneDrive-Bruxo/ASC projects/calculator/curs_bnr.php';
+
+        fetch(bnrUrl)
+            .then(response => response.json())
+            .then(data => {
+                cursEuro = data.eurExchangeRate;
+                cursUSD = data.usdExchangeRate;
+
+                // După ce am obținut cursurile valutare, putem calcula alte valori
+                calculatePretVanzare();
+            })
+            .catch(error => {
+                console.error('Eroare la obținerea cursului valutar:', error);
+            });
+    }
+
+    // Inițializăm cursurile valutare
+    updateExchangeRates();
+
+    cursVal.value = '4.9627';
+    cursVal.setAttribute('readonly', 'readonly');
 
     pvanzareInput.setAttribute('readonly', 'readonly');
-    ptvaInput.setAttribute('readonly', 'readonly'); 
+    ptvaInput.setAttribute('readonly', 'readonly');
 
     pfurnizorInput.addEventListener('input', function () {
         calculatePretVanzare();
     });
 
-    const option1Radio = document.getElementById('flexRadioDefault1');
-    const option2Radio = document.getElementById('flexRadioDefault2');
+    monedacurentaSelect.addEventListener('change', function () {
+        calculatePretVanzare();
+    });
 
     option1Radio.addEventListener('change', function () {
         calculatePretVanzare();
@@ -31,26 +58,47 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePretVanzare();
     });
 
+    function resetValues() {
+        pfurnizorInput.value = '';
+        option1Radio.checked = false;
+        option2Radio.checked = false;
+        pvanzareInput.value = '0,00';
+        ptvaInput.value = '0,00';
+        monedacurentaSelect.value = 'Selecteaza moneda'
+    }
+
     function convertPunctInVirgula(text) {
-        return text.replace(/,/g, '.');;
+        return text.replace(/,/g, '.');
+    }
+
+    function convertToLei(value, monedaCurenta) {
+        const cursValutar1 = 4.9627; // Cursul valutar pentru 1 EUR
+        if (monedaCurenta === 'eur') {
+            return value * cursValutar1;
+        } else {
+            return value;
+        }
     }
 
     function calculatePretVanzare() {
-    let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value);
-    pfurnizorValue = parseFloat(pfurnizorValue);
+        let pfurnizorValue = convertPunctInVirgula(pfurnizorInput.value);
+        pfurnizorValue = parseFloat(pfurnizorValue);
 
-    const option1Checked = option1Radio.checked;
-    const option2Checked = option2Radio.checked;
+        const monedaCurenta = monedacurentaSelect.value;
+        const option1Checked = option1Radio.checked;
+        const option2Checked = option2Radio.checked;
 
-    if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked)) {
-        pvanzareInput.value = "0,00";
-        ptvaInput.value = "0,00";
-        pvanzareInput.style.opacity = "0.7";
-        ptvaInput.style.opacity = "0.7";
-        return;
-    }
+        if (isNaN(pfurnizorValue) || (!option1Checked && !option2Checked) || monedaCurenta === 'Selecteaza moneda') {
+            pvanzareInput.value = '0,00';
+            ptvaInput.value = '0,00';
+            return;
+        }
 
-    let adaosComercial = 0;
+        if (monedaCurenta === 'eur') {
+            pfurnizorValue = convertToLei(pfurnizorValue, monedaCurenta);
+        }
+
+        let adaosComercial = 0;
 
     if (option1Checked) {
         pfurnizorValue /= 1.19;
@@ -72,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (pfurnizorValue > 0) {
         adaosComercial = 0.30; // 30%
         pvanzareInput.value = '26,05';
-        ptvaInput.value = '30,99'; // 30% din prețul de vânzare
+        ptvaInput.value = '30.99'; // 
         return;
     }
 
@@ -113,6 +161,7 @@ function resetValues() {
     document.getElementById('flexRadioDefault2').checked = false;
     document.getElementById('pvanzare').value = '0,00';
     document.getElementById('ptva').value = '0,00';
+    document.getElementById('monedacurenta').value = 'Selecteaza moneda';
 }
 
 
@@ -160,5 +209,9 @@ document.getElementById('CopiazaTVA').addEventListener('click', function () {
         resetValues();
     }, 1500);
 });
+
+
+  
+
 
 
