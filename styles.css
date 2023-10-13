@@ -26,3 +26,20 @@
     margin-right: 45px;
 }
 
+#curs_valutar {
+    position: absolute;
+    top: 0px; /* Ajustați acest număr pentru a poziționa corect div-ul în partea de sus */
+    right: 10px; /* Ajustați acest număr pentru a poziționa corect div-ul în partea dreaptă */
+    left: 450px;
+    /*z-index: 1000; /* Asigurați-vă că este peste celelalte elemente */
+
+    /* Alte stiluri dorite pentru aspectul div-ului "curs_valutar" */
+}
+
+.cursul {
+    margin-left: 900x;
+}
+
+#ref {
+	z-index: 2000;
+}
