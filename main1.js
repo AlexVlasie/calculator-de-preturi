@@ -14,27 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let cursEuro = 0;
     let cursUSD = 0;
 
-    // Funcția pentru actualizarea cursului valutar
-    function updateExchangeRates() {
-        // Înlocuiți URL-ul cu locația corectă a fișierului curs_bnr.php pe serverul dvs.
-        const bnrUrl = '/Users/vlasie/Library/CloudStorage/OneDrive-Bruxo/ASC projects/calculator/curs_bnr.php';
-
-        fetch(bnrUrl)
-            .then(response => response.json())
-            .then(data => {
-                cursEuro = data.eurExchangeRate;
-                cursUSD = data.usdExchangeRate;
-
-                // După ce am obținut cursurile valutare, putem calcula alte valori
-                calculatePretVanzare();
-            })
-            .catch(error => {
-                console.error('Eroare la obținerea cursului valutar:', error);
-            });
-    }
-
-    // Inițializăm cursurile valutare
-    updateExchangeRates();
+ 
 
     cursVal.value = '4.9627';
     cursVal.setAttribute('readonly', 'readonly');
