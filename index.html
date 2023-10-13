@@ -121,6 +121,23 @@
     </style>
 </head>
 <body>
+
+
+
+    <div class="container-fluid">
+        <div class="row justify-content-end">
+            <div class="container" id="curs_valutar">
+                <div id="calc" class="cursul">
+                    <div title="Pret vanzare final fara TVA (include adaos)" class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Curs Valutar</span>
+                        <input type="text" id="cursvalutar2" class="form-control" aria-label="da" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>        
+
+
     <div class="container">
         <div id="calc">
             <div title="Reset" class="calcrefresh">
@@ -148,6 +165,13 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Pret furnizor</span>
                 <input type="text" id="pfurnizor" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
             </div>
+
+
+            <select class="form-select" id="monedacurenta" aria-label="Selecteaza moneda">
+                <option selected>Selecteaza moneda</option>
+                <option value="leu">LEU</option>
+                <option value="eur">EUR</option>
+              </select>
 
             <div class="tva-box" title="Se selecteaza daca pretul oferit de furnizor include TVA." style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 
@@ -195,6 +219,10 @@
     </div>
 
 
+
+    <!--Actualizare curs valutar-->
+
+    
 
 
 
